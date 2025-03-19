@@ -1,5 +1,10 @@
 # Sprint-3-ToothFairy: Sistema de Recomendação de Planos Odontológicos com Machine Learning
 
+## Integrantes
+Bruno Burian – RM 552863
+Lucca Augusto Matteoni – RM 98146
+Luccas dos Anjos Correia da Silva – RM 552890
+
 ## Descrição
 
 Este projeto implementa um sistema de recomendação de planos odontológicos utilizando técnicas de Machine Learning para auxiliar usuários na escolha do plano mais adequado. O sistema coleta informações do usuário (através de perguntas), realiza engenharia de features, treina um modelo Random Forest e recomenda o plano com maior probabilidade de adesão.
