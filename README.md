@@ -1,9 +1,9 @@
 # Sprint-3-ToothFairy: Sistema de Recomendação de Planos Odontológicos com Machine Learning
 
 ## Integrantes
-Bruno Burian – RM 552863
-Lucca Augusto Matteoni – RM 98146
-Luccas dos Anjos Correia da Silva – RM 552890
+*    Bruno Burian – RM 552863
+*    Lucca Augusto Matteoni – RM 98146
+*    Luccas dos Anjos Correia da Silva – RM 552890
 
 ## Descrição
 
