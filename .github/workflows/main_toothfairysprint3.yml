@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy WAR app to Azure Web App - ToothFairySprint3
+name: Build and deploy JAR app to Azure Web App - ToothFairySprint3
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: windows-latest
     permissions:
-      contents: read #This is required for actions/checkout
+      contents: read
 
     steps:
       - uses: actions/checkout@v4
@@ -25,13 +25,15 @@ jobs:
           distribution: 'microsoft'
 
       - name: Build with Maven
-        run: mvn clean install
+        run: |
+          cd Java_Odontoprev_v2
+          mvn clean package
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/*.war'
+          path: 'Java_Odontoprev_v2/target/*.jar'  # 🚀 Caminho corrigido para salvar o JAR corretamente
 
   deploy:
     runs-on: windows-latest
@@ -39,18 +41,27 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    
+    permissions:
+      id-token: write
+      contents: read
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: java-app
-      
+          path: './'  # 🚀 Garante que o JAR será salvo na raiz do runner
+
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_CF60592C5AFB4E269391C6F38E27BFB5 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_2F64D84087CF476E8D8AE0F66EBB3E81 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_323804CDE0FB4A23B01F0DD52A32DCDF }}
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'ToothFairySprint3'
-          slot-name: 'Production'
-          package: '*.war'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_95853348D9D44DB7AA0CA9BFA3E2BA55 }}
+          package: '*.jar'  # 🚀 Agora busca o JAR corretamente
