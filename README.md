@@ -57,3 +57,7 @@ O sistema é composto pelos seguintes componentes principais:
 2.  **Engenharia de Features:** Funções para converter as respostas do usuário e as características dos planos em features numéricas adequadas para o modelo de ML. Veja o código na função `criar_features` no arquivo `Tooth_Fairy.ipynb`.
 3.  **Modelagem:** Código para treinar e avaliar o modelo Random Forest (implementado com a biblioteca `scikit-learn`).
 4.  **Recomendação:** Função `recomendar_plano` que utiliza o modelo treinado para prever a probabilidade de adesão e recomendar o plano mais adequado.
+
+## Link para vídeo de IOT
+
+https://youtu.be/fg692OWniNQ
